@@ -1,0 +1,51 @@
+[2019-06-23 15:08:33,265, INFO]: filemanager.py-211: start upload hit localfile gaokao_score3.xml as gaokao_score3.xml in bucket tob
+[2019-06-23 15:08:33,266, INFO]: filemanager.py-212: request url: http://tob.cn-bj.ufileos.com/uploadhit
+[2019-06-23 15:10:21,516, INFO]: filemanager.py-211: start upload hit localfile gaokao_score3.xml as gaokao_score3.xml in bucket tob
+[2019-06-23 15:10:21,517, INFO]: filemanager.py-212: request url: http://tob.cn-bj.ufileos.com/uploadhit
+[2019-06-23 15:11:25,985, INFO]: filemanager.py-211: start upload hit localfile gaokao_score3.xml as gaokao_score3.xml in bucket tob
+[2019-06-23 15:11:25,987, INFO]: filemanager.py-212: request url: http://tob.cn-bj.ufileos.com/uploadhit
+[2019-06-23 15:21:54,576, INFO]: filemanager.py-87: start put file gaokao_score3.xml to bucket tob as gaokao_score3.xml
+[2019-06-23 15:21:54,605, INFO]: filemanager.py-88: put UFile url: http://tob.cn-bj.ufileos.com/gaokao_score3.xml
+[2019-06-23 15:21:54,606, INFO]: filemanager.py-89: request header:
+{
+    "User-Agent": "UCloud Python SDK 3.0.1 (Windows: AMD64 : Python/3.7.3)",
+    "Content-Type": "text/xml",
+    "Authorization": "",
+    "Content-Length": "2134948"
+}
+[2019-06-23 15:26:43,936, INFO]: filemanager.py-87: start put file gaokao_score3.xml to bucket tob as 360/xml/gaokao_score3.xml
+[2019-06-23 15:26:43,937, INFO]: filemanager.py-88: put UFile url: http://tob.cn-bj.ufileos.com/360/xml/gaokao_score3.xml
+[2019-06-23 15:26:43,938, INFO]: filemanager.py-89: request header:
+{
+    "User-Agent": "UCloud Python SDK 3.0.1 (Windows: AMD64 : Python/3.7.3)",
+    "Content-Type": "text/xml",
+    "Authorization": "",
+    "Content-Length": "2134948"
+}
+[2019-06-23 15:28:23,701, INFO]: filemanager.py-87: start put file gaokao_score3.xml to bucket tob as 360/xml/gaokao_score3.xml
+[2019-06-23 15:28:23,702, INFO]: filemanager.py-88: put UFile url: http://tob.cn-bj.ufileos.com/360/xml/gaokao_score3.xml
+[2019-06-23 15:28:23,703, INFO]: filemanager.py-89: request header:
+{
+    "User-Agent": "UCloud Python SDK 3.0.1 (Windows: AMD64 : Python/3.7.3)",
+    "Content-Type": "text/xml",
+    "Authorization": "UCloud TOKEN_cf8aefab-828f-4604-a2c7-b4adb8ed5946:2qRf8vRGp0VBEycttMuwHiCSvew=",
+    "Content-Length": "2134948"
+}
+[2019-06-23 15:28:45,880, INFO]: filemanager.py-87: start put file gaokao_score3.xml to bucket tob as 360/xml/gaokao_score3.xml
+[2019-06-23 15:28:45,881, INFO]: filemanager.py-88: put UFile url: http://tob.cn-bj.ufileos.com/360/xml/gaokao_score3.xml
+[2019-06-23 15:28:45,889, INFO]: filemanager.py-89: request header:
+{
+    "User-Agent": "UCloud Python SDK 3.0.1 (Windows: AMD64 : Python/3.7.3)",
+    "Content-Type": "text/xml",
+    "Authorization": "UCloud TOKEN_cf8aefab-828f-4604-a2c7-b4adb8ed5946:2qRf8vRGp0VBEycttMuwHiCSvew=",
+    "Content-Length": "2134948"
+}
+[2019-06-23 15:30:18,495, INFO]: filemanager.py-87: start put file gaokao_score3.xml to bucket tob as 360/xml/gaokao_score3.xml
+[2019-06-23 15:30:18,496, INFO]: filemanager.py-88: put UFile url: http://tob.cn-bj.ufileos.com/360/xml/gaokao_score3.xml
+[2019-06-23 15:30:18,497, INFO]: filemanager.py-89: request header:
+{
+    "User-Agent": "UCloud Python SDK 3.0.1 (Windows: AMD64 : Python/3.7.3)",
+    "Content-Type": "text/xml",
+    "Authorization": "",
+    "Content-Length": "2134948"
+}
