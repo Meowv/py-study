@@ -14,6 +14,8 @@ from datetime import datetime
 from aiohttp import web
 from jinja2 import Environment, FileSystemLoader
 
+from config import configs
+
 import orm
 from coroweb import add_routes, add_static
 
@@ -38,29 +40,35 @@ def init_jinja2(app, **kw):
             env.filters[name] = f
     app['__templating__'] = env
 
-async def logger_factory(app, handler):
-    async def logger(request):
+@asyncio.coroutine
+def logger_factory(app, handler):
+    @asyncio.coroutine
+    def logger(request):
         logging.info('Request: %s %s' % (request.method, request.path))
-        # await asyncio.sleep(0.3)
-        return (await handler(request))
+        # yield from asyncio.sleep(0.3)
+        return (yield from handler(request))
     return logger
 
-async def data_factory(app, handler):
-    async def parse_data(request):
+@asyncio.coroutine
+def data_factory(app, handler):
+    @asyncio.coroutine
+    def parse_data(request):
         if request.method == 'POST':
             if request.content_type.startswith('application/json'):
-                request.__data__ = await request.json()
+                request.__data__ = yield from request.json()
                 logging.info('request json: %s' % str(request.__data__))
             elif request.content_type.startswith('application/x-www-form-urlencoded'):
-                request.__data__ = await request.post()
+                request.__data__ = yield from request.post()
                 logging.info('request form: %s' % str(request.__data__))
-        return (await handler(request))
+        return (yield from handler(request))
     return parse_data
 
-async def response_factory(app, handler):
-    async def response(request):
+@asyncio.coroutine
+def response_factory(app, handler):
+    @asyncio.coroutine
+    def response(request):
         logging.info('Response handler...')
-        r = await handler(request)
+        r = yield from handler(request)
         if isinstance(r, web.StreamResponse):
             return r
         if isinstance(r, bytes):
@@ -83,8 +91,8 @@ async def response_factory(app, handler):
                 resp = web.Response(body=app['__templating__'].get_template(template).render(**r).encode('utf-8'))
                 resp.content_type = 'text/html;charset=utf-8'
                 return resp
-        if isinstance(r, int) and r >= 100 and r < 600:
-            return web.Response(r)
+        if isinstance(r, int) and t >= 100 and t < 600:
+            return web.Response(t)
         if isinstance(r, tuple) and len(r) == 2:
             t, m = r
             if isinstance(t, int) and t >= 100 and t < 600:
@@ -94,6 +102,7 @@ async def response_factory(app, handler):
         resp.content_type = 'text/plain;charset=utf-8'
         return resp
     return response
+
 
 def datetime_filter(t):
     delta = int(time.time() - t)
