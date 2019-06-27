@@ -16,7 +16,7 @@ async def create_pool(loop, **kw):
     logging.info('create database connection pool...')
     global __pool
     __pool = await aiomysql.create_pool(
-        host = kw.get('host', 'localhost'),
+        host = kw.get('host', 'rm-uf664xe30hl1i9c09qo.mysql.rds.aliyuncs.com'),
         port = kw.get('port', 3306),
         user = kw['user'],
         password = kw['password'],
@@ -24,11 +24,11 @@ async def create_pool(loop, **kw):
         charset = kw.get('charset', 'utf-8'),
         autocommit = kw.get('autocommit', True),
         maxsize = kw.get('maxsize', 10),
-        minsize = ke.get('minsize', 1),
+        minsize = kw.get('minsize', 1),
         loop = loop
     )
 
-async def select(sql, args, size=Node):
+async def select(sql, args, size=None):
     log(sql, args)
     global __pool
     async with __pool.get() as conn:
@@ -139,7 +139,7 @@ class ModelMetaclass(type):
         attrs['__delete__'] = 'delete from `%s` where `%s`=?' % (tableName, primaryKey)
         return type.__new__(cls, name, bases, attrs)
 
-class Model(dict, metaclass=MoodelMetaclass):
+class Model(dict, metaclass=ModelMetaclass):
 
     def __init__(self, **kw):
         super(Model, self).__init__(**kw)
