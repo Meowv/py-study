@@ -24,3 +24,10 @@ def index(request):
         '__template__': 'blogs.html',
         'blogs': blogs
     }
+
+@get('/api/users')
+def api_get_users():
+    users = yield from User.findAll(orderby='created_at descs')
+    for u in users:
+        u.password = '******'
+    return dict(users=users)
