@@ -62,7 +62,7 @@ def start_watch(path, callback):
 if __name__ == '__main__':
     argv = sys.argv[1:]
     if not argv:
-        print('Usage: ./pymonitor your-script.py')
+        print('Usage: ./pymonitor app.py')
         exit(0)
     if argv[0] != 'python':
         argv.insert(0, 'python')
