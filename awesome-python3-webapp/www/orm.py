@@ -18,7 +18,7 @@ def create_pool(loop, **kw):
     logging.info('create database connection pool...')
     global __pool
     __pool = yield from aiomysql.create_pool(
-        host=kw.get('host', 'localhost'),
+        host=kw.get('host', 'rm-uf664xe30hl1i9c09qo.mysql.rds.aliyuncs.com'),
         port=kw.get('port', 3306),
         user=kw['user'],
         password=kw['password'],
