@@ -1,0 +1,22 @@
+2016-05-23 10：59：25 status unpacked python 3-htm15lib：a110.999-3~ubuntu1
+2016-05-23 10：59：25 status half-configuredpython3-htm15ib：a110.999-3~ubuntu1
+2016-05-23 10：59：25 status installedpython3-htm151ib：a110.999-3~ubuntu1
+2016-05-23 10：59：25 configure python 3-pkg-resources：al13.3-1ubuntu2<none>
+2016-05-23 10：59：25 status unpacked python 3-pkg-resources：a113.3-1ubuntu2
+2016-05-23 10：59：25 status half-configuredpython3-pkg-resources：al13.3-1ubuntu2
+2016-05-23 10：59：25 status installed python 3-pkg-resources：al13.3-1ubuntu2
+2016-05-23 10：59：25 configure python 3-setuptools：al13.3-1ubuntu2<none>
+2016-05-23 10：59：25 status unpackedpython3-setuptools：al13.3-1ubuntu2
+2016-05-23 10：59：26 status half-configuredpython3-setuptoo1s：a113.3-1ubuntu2
+2016-05-23 10：59：26 status installedpython3-setuptools：aU13.3-1ubuntu2
+2016-05-23 10：59：26 configure python 3-pip：au11.5.4-1ubuntu3<none>
+2016-05-23 10：59：26 status unpacked python 3-pip：au11.5.4-1ubuntu3
+2016-05-23 10：59：26 status half-configuredpython3-pip：al11.5.4-1ubuntu3
+2016-05-23 10：59：26 status installed python 3-pip：au11.5.4-1ubuntu3
+2016-05-23 10：59：26 configure python3-whee1：a110.24.0-1~ubuntu1<none>
+2016-05-23 10：59：26 status unpackedpython3-wheel：al10.24.0-1~ubuntu1
+2016-05-23 10：59：26 status half-configuredpython3-wheel：al10.24.0-1~ubuntu1
+2016-05-23 10：59：27 status installedpython3-wheel：al10.24.0-1~ubuntu1
+2016-05-23 10：59：27 trigproclibc-bin：and642.19-0ubuntu6.5<none>
+2016-05-23 10：59：27 status half-configuredlibc-bin：and642.19-0ubuntu6.5
+2016-05-23 10：59：27 status installed libc-bin：amd64 2.19-0ubuntu6.5
