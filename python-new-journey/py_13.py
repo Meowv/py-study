@@ -2,7 +2,7 @@
 
 from itertools import islice
 
-f = open('python-new-journey/LICENSE', 'r').readlines()
+f = open('python-new-journey/files/LICENSE', 'r').readlines()
 
 for line in islice(f ,10, 20):
     print(line)
