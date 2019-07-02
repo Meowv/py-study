@@ -1,14 +1,24 @@
-# 派生内置不可变类型并修改其实例化行为
+# 读写excel文件
 
-# 实现 __new__ 修改实例化行为
+import xlrd, xlwt
 
-class IntTuple(tuple):
-    def __new__(cls, iterable):
-        g = (x for x in iterable if isinstance(x,int) and x > 0)
-        return super(IntTuple, cls).__new__(cls, g)
+rbook = xlrd.open_workbook('demo.xlsx')
+rsheet = rbook.sheet_by_index(0)
 
-    def __init__(self, itetable):
-        super(IntTuple,self).__init__(itetable)
+nc = rsheet.ncols
+rsheet.put_cell(0, nc, xlrd.XL_CELL_TEXT, u'总分', None)
 
-t = IntTuple([1,-1,'abc',6,['x','y'], 3])
-print(t)
+for row in range(1, rsheet.nrows):
+    t = sum(rsheet.row_values(row, 1))
+    rsheet.put_cell(row, nc, xlrd.XL_CELL_NUMBER, t, None)
+
+
+wbook = xlwt.Workbook()
+wsheet = wbook.add_sheet(rsheet.name)
+style = xlwt.easyxf('align: vertical center, horizontal center')
+
+for r in range(rsheet.nrows):
+    for c in range(rsheet.ncols):
+        wsheet.write(r, c, rsheet.cell_value(r, c), style)
+
+wbook.save('output.xlsx')
