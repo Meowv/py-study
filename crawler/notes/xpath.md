@@ -31,3 +31,20 @@
     htmlElement = etree.parse('lagou.html', parser=parser)
     print(etree.tostring(htmlElement, encoding='utf-8').decode('utf-8'))
     ```
+
+## lxml结合xpath注意事项
+- 使用`xpath`语法，应该使用`Element.xpath`方法来执行xpath的选择，代码如下
+    ```python
+    trs = html.xpath("//tr[position()>1]")
+    ```
+    `xpath`函数返回永远是一个列表
+- 获取某个标签的属性
+    ```python
+    html.xpath("//a/@href")
+    # 获取a标签的href属性对应的值
+    ```
+- 获取文本，使用过`xpath`红豆`text()`函数，代码如下
+- 在某个标签下执行 xpath函数，获取这个标签下的子孙元素应在 // 之前加一个点`.` 代表在当前元素下获取
+    ```python
+    txt = tr.xpath("./td[1]//text()")
+    ```
