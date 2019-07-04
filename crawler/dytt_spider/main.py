@@ -61,19 +61,33 @@ def parse_detail_page(url):
             movie["director"] = info
         elif info.startswith('◎主　　演'):
             info = parse_info(info, '◎主　　演')
-            for x in range(index+1, 100):
-                pass
+            actors = [info]
+            for x in range(index+1, len(infos)):
+                actor = infos[x].strip()
+                if actor.startswith('◎'):
+                    break
+                actors.append(actor)
+            movie["actors"] = actors
+        elif info.startswith('◎简　　介 '):
+            info = parse_info(info, '◎简　　介')
+            for x in range(index+1, len(infos)):
+                profile = infos[x].strip()
+                movie["profile"] = profile
+
+    download_url = html.xpath("//td[@bgcolor='#fdfddf']/a/@href")[0]
+    movie["download_url"] = download_url
+    return movie
 
 def spider():
     base_url = 'https://www.dytt8.net/html/gndy/dyzz/list_23_{}.html'
     # for : 循环的页数
-    for x in range(1, 10):
+    for x in range(1, 3):
         url = base_url.format(x)
         detail_urls = get_detail_urls(url)
         # for : 遍历一页中所有电影详情url
         for detial_url in detail_urls:
             movie = parse_detail_page(detial_url)
-            break
+            print(movie)
 
 if __name__ == "__main__":
     spider()
