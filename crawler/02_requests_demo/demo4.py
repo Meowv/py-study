@@ -5,8 +5,8 @@ import requests
 
 url = 'http://www.renren.com/PLogin.do'
 data = {
-        'email': '13477996338',
-        'password': 'Hackxing58420...'
+        'email': '...',
+        'password': '...'
 }
 headers = {
     'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36'
