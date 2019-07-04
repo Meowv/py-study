@@ -35,3 +35,7 @@ print(response.status_code)
 ## response.text和response.content的区别
 - response.content 这个是直接从网络上抓取的数据，没有经过任何解码，所以是一个bytes类型。其实在硬盘上和网络上的传输字符串都是bytes类型
 - response.text 这个是str的数据类型，是requests库将response.conten进行解码的字符串。解码需要指定一个编码方式。requests会根据自己的猜测来判断编码的方式，所以有时候惠猜测锁雾，就会导致解码产生乱码，这还是就应该使用`response.content.decode('utf-8')`进行手动解码
+
+## 发送post请求
+- 发送post请求，直接调用`requests.post`方法就可以了
+- 如果返回的是json数据，可以调用`response.json()`来将json字符串转换为字典或者列表
