@@ -39,3 +39,30 @@ print(response.status_code)
 ## 发送post请求
 - 发送post请求，直接调用`requests.post`方法就可以了
 - 如果返回的是json数据，可以调用`response.json()`来将json字符串转换为字典或者列表
+
+## 使用代理
+在请求方法中，传递`proxies`参数就可以了
+
+## 使用cookie
+如果想要在多次请求中共享cookie，那么应该使用session，示例代码如下
+```python
+import requests
+
+url = 'http://www.renren.com/PLogin.do'
+data = {
+        'email': '13477996338',
+        'password': 'Hackxing58420...'
+}
+headers = {
+    'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36'
+}
+
+session = requests.Session()
+
+session.post(url, data=data, headers=headers)
+
+response = session.get('http://www.renren.com/880151247/profile')
+
+with open('renren.html', 'w', encoding='utf-8') as fp:
+    fp.write(response.text)
+```
