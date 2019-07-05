@@ -23,7 +23,7 @@
     ```
 
 ## strings和stripped_strings、string属性以及get_text方法
-- `string` : 获取某个标签下的非标签字符串，返回的是字符串
+- `string` : 获取某个标签下的非标签字符串，返回的是字符串,如果这个标签下有多行字符，就不能获取到了
 - `strings` : 获取某个标签下的子孙非标签字符串，返回的是生成器
 - `stripped_strings` : 获取某个标签下的子孙非标签字符串，会去掉空白字符，返回的是生成器
 - `get_text` : 获取某个标签下的子孙非标签字符串，不是以列表的形式返回，返回的是字符串
@@ -31,3 +31,12 @@
 ## BeautifulSoup中使用css选择器
 - 在`BeautifulSoup`中要使用css选择器，应该使用`soup.select()`方法
 - 需要传递一个css选择器的字符串给select方法
+
+## BeautifulSoup常见的四种类型
+- Tag:BeautifulSoup中所有的标签都是Tag类型，并且BeautifulSoup的对象其实本质上也是一个Tag类型，所以其一些方法如find、find_all并不是BeautifulSoup的，而是Tag
+- NavagableString:继承自Python中的str,用起来就和使用Python中的str是一样的
+- BeautifulSoup:继承自Tag,用来生成BeautifulSoup树的，对于一些查找方法，比如find、select这些，其实还是Tag的
+- Comment:继承自NavigableString
+
+## contents和children
+- 返回某个标签下的直接子元素，其中也包括字符串，他们的区别是:contents返回的是一个列表，children返回的是一个迭代器
