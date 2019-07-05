@@ -27,3 +27,7 @@
 - `strings` : 获取某个标签下的子孙非标签字符串，返回的是生成器
 - `stripped_strings` : 获取某个标签下的子孙非标签字符串，会去掉空白字符，返回的是生成器
 - `get_text` : 获取某个标签下的子孙非标签字符串，不是以列表的形式返回，返回的是字符串
+
+## BeautifulSoup中使用css选择器
+- 在`BeautifulSoup`中要使用css选择器，应该使用`soup.select()`方法
+- 需要传递一个css选择器的字符串给select方法
