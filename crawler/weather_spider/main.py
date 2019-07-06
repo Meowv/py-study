@@ -1,5 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
+from pyecharts import Bar
+
+ALL_DATA = []
 
 def parse_page(url):
     HEADERS = {
@@ -24,7 +27,8 @@ def parse_page(url):
             city = list(city_td.stripped_strings)[0]
             temp_td = tds[-2]
             min_temp = list(temp_td.stripped_strings)[0]
-            print({"city":city,"min_temp":min_temp})
+
+            ALL_DATA.append({"city":city,"min_temp":int(min_temp)})
 
 def main():
     urls = [
@@ -39,6 +43,25 @@ def main():
     ]
     for url in urls:
         parse_page(url)
+
+    # 分析数据
+    # 根据最低气温进行排序
+    ALL_DATA.sort(key=lambda data: data['min_temp'])
+
+    data = ALL_DATA[0:10]
+
+    # cities = []
+    # for city_temp in data:
+    #     city = city_temp['city']
+    #     cities.append(city)
+    cities = list(map(lambda x: x['city'], data))
+    temps = list(map(lambda x: x['min_temp'], data))
+
+    # pip install pyecharts
+    chart = Bar("中国天气最低气温排行榜")
+
+    chart.add('', cities, temps)
+    chart.render('temperature.html')
 
 if __name__ == "__main__":
     main()
