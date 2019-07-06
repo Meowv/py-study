@@ -88,3 +88,23 @@ print(ret.group())
 text = 'abcd'
 ret = re.match('\w{1,4}', text)
 print(ret.group())
+
+# 匹配手机号码
+text = '13477996888'
+ret = re.match('1[345789]\d{9}', text)
+print(ret.group())
+
+# 验证邮箱
+text = 'qix_123@meowv.com'
+ret = re.match('\w+@[a-z0-9]+\.[a-z]+', text)
+print(ret.group())
+
+# 验证URL
+text = 'https://meowv.com'
+ret = re.match('(http|https|ftp)://[^\s]+', text)
+print(ret.group())
+
+# 验证身份证
+text = '40000000000000000X'
+ret = re.match('\d{17}[\dxX]', text)
+print(ret.group())
