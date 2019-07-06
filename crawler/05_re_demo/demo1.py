@@ -63,3 +63,28 @@ print(ret.group())
 text = '+'
 ret = re.match('[^a-zA-Z0-9_]', text)
 print(ret.group())
+
+# * 可以匹配0或者任意个字符
+text = '58420abcd'
+ret = re.match('\d*', text)
+print(ret.group())
+
+# + 可以匹配1或者多个字符
+text = 'abcd'
+ret = re.match('\w+', text)
+print(ret.group())
+
+# ? 可以匹配一个或者0个(要么没有，要么就只有一个)
+text = 'abcd'
+ret = re.match('\w?', text)
+print(ret.group())
+
+# {m} 可以匹配m个字符
+text = 'abcd'
+ret = re.match('\w{2}', text)
+print(ret.group())
+
+# {m,n} 匹配m到n个字符
+text = 'abcd'
+ret = re.match('\w{1,4}', text)
+print(ret.group())
