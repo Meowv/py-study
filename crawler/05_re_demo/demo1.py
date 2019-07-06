@@ -108,3 +108,35 @@ print(ret.group())
 text = '40000000000000000X'
 ret = re.match('\d{17}[\dxX]', text)
 print(ret.group())
+
+# ^
+text = 'hello'
+ret = re.search('^h', text)
+print(ret.group())
+
+# $ 以……结尾
+text = '123@meowv.com'
+ret = re.match('\w+@meowv.com$', text)
+print(ret.group())
+
+# | 匹配多个表达式或者字符
+text = 'https'
+ret = re.match('(https|http|ftp)$', text)
+print(ret.group())
+
+# 贪婪模式和非贪婪模式
+text = '0123456'
+ret = re.match('\d+?', text)
+print(ret.group())
+
+ret = re.match('\d+', text)
+print(ret.group())
+
+text = '<h1>title</h1>'
+ret = re.match('<.+?>', text)
+print(ret.group())
+
+# 匹配0-100之间的数字
+text = '99'
+ret = re.match('[1-9]\d?$|100$', text)
+print(ret.group())
