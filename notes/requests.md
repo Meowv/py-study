@@ -1,7 +1,7 @@
-# request
+# requests
 
 ## 发送get请求
-发送get请求，直接调用`request.get`就可以了，想要发送什么类型的请求，就调用什么方法
+发送get请求，直接调用`requests.get`就可以了，想要发送什么类型的请求，就调用什么方法
 ```python
 response = requests.get('https://www.baidu.com/')
 ```
