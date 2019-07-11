@@ -26,7 +26,7 @@
 - scrapy.cfg：项目的配置文件。
 - spiders包：以后所有的爬虫，都是存放到这个里面。
 
-## 糗事百科Scrapy爬虫
+## Scrapy爬虫注意事项
 - response 是一个`from scrapy.http.response.html.HtmlResponse`对象，可以执行`xpath`和`css`语法提取数据
 - 提取出来的数据是一个`Selector`或者`SelectorList`对象，如果想要获取其中的字符串，应该执行`getall`或者`get`方法
 - getall方法：获取`Selector`中所有文本，返回的是一个列表
@@ -37,3 +37,47 @@
     - `open_spider`：当爬虫被打开的时候执行
     - `process_item`：当爬虫有item传过来的时候会被调用
     - `close_spider`：当爬虫关闭的时候被调用
+
+
+### JsonItemExporter和JsonLinesItemExporter
+- 保存json数据的时候，可以使用这两个类，让操作变得更简单
+- `JsonItemExporter`：每次把数据添加到内存中，最后统一写入磁盘，存储的数据是一个满足json规则的数据，数据量比较大，比较耗内存
+    ```python
+    from scrapy.exporters import JsonItemExporter
+    class QsbkPipeline(object):
+        def __init__(self):
+            self.fp = open("duanzi.josn", 'wb')
+            self.exporter = JsonItemExporter(self.fp, ensure_ascii=False, encoding='utf-8')
+            self.exporter.start_exporting()
+
+        def open_spider(self, spider):
+            print('start...')
+
+        def process_item(self, item, spider):
+            self.exporter.export_item(item)
+            return item
+
+        def close_spider(self, spider):
+            self.exporter.finish_exporting()
+            self.fp.close()
+            print('end...')
+    ```
+- `JsonLinesItemExporter`：每次调用`export_item`的时候把这个item存储到磁盘，每一个字典是一行，整个文件不是一个满足json格式的文件，每次处理初级的时候直接存储到硬盘，不耗内存，数据比较安全
+    ```python
+    from scrapy.exporters import JsonLinesItemExporter
+    class QsbkPipeline(object):
+        def __init__(self):
+            self.fp = open("duanzi.josn", 'wb')
+            self.exporter = JsonLinesItemExporter(self.fp, ensure_ascii=False, encoding='utf-8')
+
+        def open_spider(self, spider):
+            print('start...')
+
+        def process_item(self, item, spider):
+            self.exporter.export_item(item)
+            return item
+
+        def close_spider(self, spider):
+            self.fp.close()
+            print('end...')
+    ```
