@@ -25,3 +25,15 @@
 - settings.py：本爬虫的一些配置信息（比如请求头、多久发送一次请求、ip代理池等）。
 - scrapy.cfg：项目的配置文件。
 - spiders包：以后所有的爬虫，都是存放到这个里面。
+
+## 糗事百科Scrapy爬虫
+- response 是一个`from scrapy.http.response.html.HtmlResponse`对象，可以执行`xpath`和`css`语法提取数据
+- 提取出来的数据是一个`Selector`或者`SelectorList`对象，如果想要获取其中的字符串，应该执行`getall`或者`get`方法
+- getall方法：获取`Selector`中所有文本，返回的是一个列表
+- get方法：获取的是`Selector`中的第一个文本，返回的是str类型
+- 如果数据解析回来要传给pipelines处理，可以使用`yield`来返回，或者是添加所有的item，统一使用`return`返回
+- item：在`item.py`中定义好模型，不要使用字典
+- pipelines：这个是专门一从来保存数据的，其中有三个方法是会被经常用到的。要激活pipelines，应该在`settings.py`中，设置`ITEM_PIPELINES`
+    - `open_spider`：当爬虫被打开的时候执行
+    - `process_item`：当爬虫有item传过来的时候会被调用
+    - `close_spider`：当爬虫关闭的时候被调用
