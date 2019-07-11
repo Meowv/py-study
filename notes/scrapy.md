@@ -39,7 +39,7 @@
     - `close_spider`：当爬虫关闭的时候被调用
 
 
-### JsonItemExporter和JsonLinesItemExporter
+## JsonItemExporter和JsonLinesItemExporter
 - 保存json数据的时候，可以使用这两个类，让操作变得更简单
 - `JsonItemExporter`：每次把数据添加到内存中，最后统一写入磁盘，存储的数据是一个满足json规则的数据，数据量比较大，比较耗内存
     ```python
@@ -81,3 +81,6 @@
             self.fp.close()
             print('end...')
     ```
+
+## 运行爬虫
+`scrapy crawl qsbk_spider`
