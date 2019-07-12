@@ -90,3 +90,8 @@
 
 ## 运行爬虫
 `scrapy crawl qsbk_spider`
+
+## scrapy shell
+- 可以方便做一些数据提取的测试代码
+- 如果想要执行scrapy命令，要先进入scrapy所在的环境中
+- 如果想要读取某个项目的配置信息，应该先进入到这个项目中，在执行`scrapy shell 链接`命令
