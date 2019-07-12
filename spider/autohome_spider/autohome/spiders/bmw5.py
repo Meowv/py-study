@@ -19,5 +19,5 @@ class Bmw5Spider(scrapy.Spider):
             #     print(url)
             urls = list(map(lambda url: response.urljoin(url), urls))
 
-            item = AutohomeItem(category=category, urls=urls)
+            item = AutohomeItem(category=category, image_urls=urls)
             yield item
