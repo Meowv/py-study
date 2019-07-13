@@ -8,5 +8,5 @@ class ArticleItem(scrapy.Item):
     content = scrapy.Field()
     origin_url = scrapy.Field()
     author = scrapy.Field()
-    avator = scrapy.Field()
+    avatar = scrapy.Field()
     pub_time = scrapy.Field()

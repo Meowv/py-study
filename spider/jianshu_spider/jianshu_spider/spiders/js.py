@@ -2,7 +2,7 @@
 import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
-from jannshu_spider.items import ArticleItem
+from jianshu_spider.items import ArticleItem
 
 
 class JsSpider(CrawlSpider):
