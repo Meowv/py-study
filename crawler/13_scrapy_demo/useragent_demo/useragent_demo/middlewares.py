@@ -5,8 +5,10 @@
 # See documentation in:
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-from scrapy import signals
 import random
+
+from scrapy import signals
+import base64
 
 
 class UseragentDemoSpiderMiddleware(object):
@@ -114,3 +116,19 @@ class UserAgentDownloadMiddleware(object):
     def process_request(self, request, spider):
         user_agent = random.choice(self.USER_AGENTS)
         request.headers['User-Agent'] = user_agent
+
+class IPProxyDownloadMiddleware(object):
+    PROXIES = [
+        "163.204.242.181:9999",
+        "183.129.207.86:13693",
+        "117.90.4.72:9000"
+    ]
+    def process_request(self, request, spider):
+        # proxy = random.choice(self.PROXIES)
+        # request.meta['proxy'] = proxy
+
+        proxy = '163.204.242.181:9999'
+        user_password = '123456'
+        request.meta['proxy'] = proxy
+        b64_user_password = base64.b64encode(user_password.encode('utf-8'))
+        request.headers['Proxy-Authorization'] = 'Basic '+ b64_user_password.decode('utf-8')

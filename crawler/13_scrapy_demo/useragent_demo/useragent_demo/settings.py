@@ -55,6 +55,7 @@ DEFAULT_REQUEST_HEADERS = {
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
    'useragent_demo.middlewares.UserAgentDownloadMiddleware': 543,
+   'useragent_demo.middlewares.IPProxyDownloadMiddleware': 100,
 }
 
 # Enable or disable extensions
