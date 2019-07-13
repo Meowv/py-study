@@ -2,6 +2,7 @@
 import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
+
 from jianshu_spider.items import ArticleItem
 
 
@@ -22,6 +23,11 @@ class JsSpider(CrawlSpider):
         origin_url = response.url
         article_id = origin_url.split('?')[0].split('/')[-1]
         content = response.xpath("//div[@class='show-content']/div").get()
+        word_count = response.xpath("//span[@class='wordage']/texe()").get()
+        read_count = response.xpath("//span[@class='views-count']/texe()").get()
+        like_count = response.xpath("//span[@class='likes-count']/texe()").get()
+        comments_count = response.xpath("//span[@class='comments-count']/texe()").get()
+        subjects = ",".join(response.xpath("//div[@class='include-collection']/a/div/text()").getall())
 
         item = ArticleItem(
             title = title,
@@ -30,6 +36,11 @@ class JsSpider(CrawlSpider):
             pub_time = pub_time,
             article_id = article_id,
             origin_url = origin_url,
-            content = content
+            content = content,
+            word_count = word_count,
+            read_count = read_count,
+            like_count = like_count,
+            comments_count = comments_count,
+            subjects = subjects
         )
         yield item

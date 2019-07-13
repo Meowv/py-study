@@ -51,7 +51,7 @@ class JianshuTwistedSpiderPipeline(object):
     def sql(self):
         if not self._sql:
             self._sql = """
-                insert into article(title,content,author,avatar,pub_time,origin_url,article_id) values(%s,%s,%s,%s,%s,%s,%s)
+                insert into article(title,content,author,avatar,pub_time,origin_url,article_id,origin_url,read_count,like_count,word_count,subjects,omments_count) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
             """
             return self._sql
         return self._sql
