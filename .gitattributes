@@ -1,3 +1,2 @@
 * text=auto
-j*.s linguist-language=python
 *.html linguist-language=python
