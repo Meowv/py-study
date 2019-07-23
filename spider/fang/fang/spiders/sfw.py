@@ -2,7 +2,7 @@
 
 import scrapy
 import re
-from fang.items import NewHouseItem
+from fang.items import NewHouseItem, ESFHouseItem
 
 
 class SfwSpider(scrapy.Spider):
@@ -51,14 +51,14 @@ class SfwSpider(scrapy.Spider):
                     esf_url = 'https://esf.fang.com/'
 
                 print("省份", province)
-                print("省份", city)
+                print("城市", city)
                 print("新房链接", newhouse_url)
                 print("二手房链接", esf_url)
                 print("~"*100)
 
                 yield scrapy.Request(url=newhouse_url, callback=self.parse_newhouse, meta={"info": (province, city)})
 
-                yield scrapy.Request(url=esf_url, callable=self.parse_esf, meta={"info": (province, city)})
+                yield scrapy.Request(url=esf_url, callback=self.parse_esf, meta={"info": (province, city)})
                 break
             break
 
@@ -108,4 +108,35 @@ class SfwSpider(scrapy.Spider):
     # 二手房解析
     def parse_esf(self, response):
         province, city = response.meta.get('info')
-        pass
+
+        dls = response.xpath("//div[@class='shop_list shop_list_4']/dl")
+        for dl in dls:
+            item = ESFHouseItem(province=province, city=city)
+            item['name'] = dl.xpath(".//p[@class='add_shop']/a/text()").get()
+            infos = dl.xpath(".//p[@class='tel_shop']/text()").getall()
+            infos = list(map(lambda x: re.sub(r'\s', '', x), infos))
+            for info in infos:
+                if '厅' in info:
+                    item['rooms'] = info
+                elif '层' in info:
+                    item['floor'] = info
+                elif '向' in info:
+                    item['toward'] = info
+                elif '㎡' in info:
+                    item['area'] = info
+                else:
+                    item['year'] = info.replace('年建', '')
+            item['address'] = dl.xpath(
+                ".//p[@class='add_shop']/span/text()").get()
+            item['price'] = "".join(dl.xpath(
+                ".//dd[@class='price_right']/span[1]//text()").getall())
+            item['unit'] = dl.xpath(
+                ".//dd[@class='price_right']/span[2]//text()").get()
+            detail_url = dl.xpath(".//dd/h4/a/@href").get()
+            item['origin_url'] = response.urljoin(detail_url)
+            yield item
+
+        next_url = response.xpath(
+            "//div[@class='page_al']/p/a/@href").get()
+        if next_url:
+            yield scrapy.Request(url=response.urljoin(next_url), callback=self.parse_esf, meta={"info": (province, city)})
