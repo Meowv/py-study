@@ -3,12 +3,14 @@
 import scrapy
 import re
 from fang.items import NewHouseItem, ESFHouseItem
+from scrapy_redis.spiders import RedisSpider
 
 
-class SfwSpider(scrapy.Spider):
+class SfwSpider(RedisSpider):
     name = 'sfw'
     allowed_domains = ['fang.com']
-    start_urls = ['https://www.fang.com/SoufunFamily.htm']
+    # start_urls = ['https://www.fang.com/SoufunFamily.htm']
+    redis_key = 'fang:start_urls'
 
     # 房天下新房和二手房数据爬取
     def parse(self, response):
@@ -59,8 +61,6 @@ class SfwSpider(scrapy.Spider):
                 yield scrapy.Request(url=newhouse_url, callback=self.parse_newhouse, meta={"info": (province, city)})
 
                 yield scrapy.Request(url=esf_url, callback=self.parse_esf, meta={"info": (province, city)})
-                break
-            break
 
     # 新房解析
     def parse_newhouse(self, response):
