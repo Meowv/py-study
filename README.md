@@ -27,6 +27,7 @@
 
 ## 爬虫项目
 
+- [mzitu_spider](https://github.com/Meowv/py-study/tree/master/spider/mzitu_spider) 妹子图推荐版块爬虫，满足你的所有幻想
 - [hotnews](https://github.com/Meowv/py-study/tree/master/coding/hotnews) 每日热点，获取各大热门网站热门头条的爬虫程序
 - [12306_spider](https://github.com/Meowv/py-study/tree/master/spider/12306_spider) 使用 selenium + Chromedriver 实现 12306 抢票
 - [autohome_spider](https://github.com/Meowv/py-study/tree/master/spider/autohome_spider) 汽车之家图片下载爬虫
