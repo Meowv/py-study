@@ -27,6 +27,7 @@
 
 ## 爬虫项目
 
+- [wallpaper](https://github.com/Meowv/py-study/tree/master/spider/wallpaper) 手机壁纸数据抓取，https://meowv.com/wallpaper
 - [hotnews](https://github.com/Meowv/py-study/tree/master/spider/hotnews) 每日热点数据抓取，https://meowv.com/hot
 - [mzitu_spider](https://github.com/Meowv/py-study/tree/master/spider/mzitu_spider) 妹子图推荐版块爬虫，满足你的所有幻想
 - [hotnews](https://github.com/Meowv/py-study/tree/master/coding/hotnews) 每日热点，获取各大热门网站热门头条的爬虫程序
